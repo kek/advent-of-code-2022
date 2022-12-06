@@ -6,7 +6,7 @@
        (-partition-after-pred #'string-empty-p)
        (--map (-map #'string-to-number it))
        (-map #'-sum)
-       (-max)))
+       (-max))) ;; 71124
 
 ;; Part Two
 (with-temp-buffer
@@ -18,4 +18,4 @@
        (-map #'-sum)
        (-sort #'>)
        (-take 3)
-       (-sum)))
+       (-sum))) ;; 204639
