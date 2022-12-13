@@ -52,5 +52,4 @@
      (-map #'halve-string)
      (convert-into-priorities)
      (--map (apply #'find-common it))
-     (-sum)
-     )
+     (-sum))

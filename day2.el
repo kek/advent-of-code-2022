@@ -90,5 +90,4 @@
      (--reject (equal it nil))
      (-map #'choose-moves)
      (-map #'score)
-     (-sum)
-)
+     (-sum))
