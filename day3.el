@@ -26,8 +26,8 @@
 
 (priorities "!")
 
-(defun convert-into-priorities (list-of-lists-of-strings)
-  (->> list-of-lists-of-strings
+(defun convert-into-priorities (list-of-bags)
+  (->> list-of-bags
        (--map (--map (priorities it) it))
        (--map (--map (-sort #'< it) it))
        (--map (--map (-uniq it) it))
@@ -52,4 +52,15 @@
      (-map #'halve-string)
      (convert-into-priorities)
      (--map (apply #'find-common it))
+     (-sum))
+
+;; Part two
+
+(defun find-common-multi (ns)
+  0)
+
+(->> (read-input-skip-empty "input3.txt")
+     (-partition 3)
+     (convert-into-priorities)
+     (-map #'find-common-multi)
      (-sum))
