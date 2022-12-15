@@ -24,8 +24,6 @@
 (defun priorities (string)
   (-map #'to-priority (string-to-list string)))
 
-(priorities "!")
-
 (defun convert-into-priorities (list-of-bags)
   (->> list-of-bags
        (--map (--map (priorities it) it))
@@ -38,6 +36,7 @@
       (car left)
     (find-common (cdr left) right)))
 
+; test
 (find-common '(potato tomato office computer) '(office yes my staple))
 
 (defun halve-string (s)
@@ -57,7 +56,19 @@
 ;; Part two
 
 (defun find-common-multi (ns)
-  0)
+  (let ((left (car ns))
+        (middle (cadr ns))
+        (right (caddr ns)))
+    (if (and (member (car left) middle)
+             (member (car left) right))
+      (car left)
+      (find-common-multi (list (cdr left) middle right)))))
+
+(->> (read-input-skip-empty "test3.txt")
+     (-partition 3)
+     (convert-into-priorities)
+     (-map #'find-common-multi)
+     (-sum))
 
 (->> (read-input-skip-empty "input3.txt")
      (-partition 3)
